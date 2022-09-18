@@ -188,3 +188,87 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+/*login*/
+
+#login .container #login-row #login-column #login-box {
+  margin-top: 120px;
+  max-width: 600px;
+  height: 360px;
+  border: 1px solid #9C9C9C;
+  background-color: #eaeaea;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+
+/*cerrar sesion*/
+
+#cerrarSesion {
+  background-color: darkred;
+  color: white;
+  margin-top: 5px;
+}
+
+
+.navbar-nav li ul{
+  display: none;
+}
+
+.navbar-nav li:hover > ul{
+  display: block;
+}
+
+
+.rating {
+  display: flex;
+         margin-top: -10px;
+     flex-direction: row-reverse;
+     margin-left: -4px;
+         float: left;
+ }
+ 
+ .rating>input {
+     display: none
+ }
+ 
+ .rating>label {
+         position: relative;
+     width: 19px;
+     font-size: 25px;
+     color: #f5b444;
+     cursor: pointer;
+ }
+ 
+ .rating>label::before {
+     content: "\2605";
+     position: absolute;
+     opacity: 0
+ }
+ 
+ .rating>label:hover:before,
+ .rating>label:hover~label:before {
+     opacity: 1 !important
+ }
+ 
+ .rating>input:checked~label:before {
+     opacity: 1
+ }
+ 
+ .rating:hover>input:checked~label:before {
+     opacity: 0.4
+ }
+
+#escribirComentario{
+  margin-top: 50px;
+}
+
+#agregar{
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+

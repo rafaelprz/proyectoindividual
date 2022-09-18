@@ -46,8 +46,8 @@ function showCategoriesList(){
     for(let i = 0; i < currentCategoriesArray.length; i++){
         let category = currentCategoriesArray[i];
 
-        if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
+        if (((minCount == undefined) || (minCount != undefined && parseInt(category.productCount) >= minPrice)) &&
+            ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxPrice))){
 
             htmlContentToAppend += `
             <div onclick="setCatID(${category.id})" class="list-group-item list-group-item-action cursor-active">
@@ -63,8 +63,7 @@ function showCategoriesList(){
                         <p class="mb-1">${category.description}</p>
                     </div>
                 </div>
-            </div>
-            `
+            </div> `
         }
 
         document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
@@ -96,6 +95,22 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
+    //mostrar el nombre de perfil o "log in" arriba a la derecha
+    let usuario = sessionStorage.getItem('user');
+    if (usuario === null){
+        document.getElementById('iniciarCerrar').innerHTML = `<a class="nav-link" href="login.html">Log In</a>`
+    }else{
+        usuario = JSON.parse(usuario)
+        document.getElementById('iniciarCerrar').innerHTML = `
+            <p class="nav-link">${usuario.nombre}</p>
+            <ul>
+            <li><a class="nav-link" href="my-profile.html" id="link-perfil">Mi perfil</a></li>
+            <li><a class="nav-link" href="cart.html" id="link-carrito">Mi carrito</a></li>
+            <li><button id="cerrarSesion">Cerrar Sesion</button></li>
+            </ul>`
+    }
+
+
     document.getElementById("sortAsc").addEventListener("click", function(){
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
@@ -112,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function(e){
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
 
-        minCount = undefined;
-        maxCount = undefined;
+        minPrice = undefined;
+        maxPrice = undefined;
 
         showCategoriesList();
     });
@@ -121,23 +136,30 @@ document.addEventListener("DOMContentLoaded", function(e){
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
-        minCount = document.getElementById("rangeFilterCountMin").value;
-        maxCount = document.getElementById("rangeFilterCountMax").value;
+        minPrice = document.getElementById("rangeFilterCountMin").value;
+        maxPrice = document.getElementById("rangeFilterCountMax").value;
 
-        if ((minCount != undefined) && (minCount != "") && (parseInt(minCount)) >= 0){
-            minCount = parseInt(minCount);
+        if ((minPrice != undefined) && (minPrice != "") && (parseInt(minPrice)) >= 0){
+            minPrice = parseInt(minPrice);
         }
         else{
-            minCount = undefined;
+            minPrice = undefined;
         }
 
-        if ((maxCount != undefined) && (maxCount != "") && (parseInt(maxCount)) >= 0){
-            maxCount = parseInt(maxCount);
+        if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0){
+            maxPrice = parseInt(maxPrice);
         }
         else{
-            maxCount = undefined;
+            maxPrice = undefined;
         }
 
         showCategoriesList();
     });
+
+    document.getElementById("cerrarSesion").addEventListener("click", ()=>{
+        sessionStorage.user = null;
+        Swal.fire('Sesion cerrada');
+        document.getElementById('iniciarCerrar').innerHTML = '<a class="nav-link" href="login.html">Log In</a>';
+
+    })
 });
