@@ -1,10 +1,13 @@
 let cat_id = localStorage.getItem("catID")
-let URL = PRODUCTS_URL + cat_id + EXT_TYPE
+let PRODSURL = PRODUCTS_URL + cat_id + EXT_TYPE
 let minPrice = undefined;
 let maxPrice = undefined;
 const ORDER_ASC_BY_PRICE = "ASC";
 const ORDER_DESC_BY_PRICE = "DESC";
 const ORDER_BY_PROD_SALES = "VENTAS";
+
+//variable donde quedara almacenado el arreglo de productos "traído" desde la URL
+let products = [];
 
 
 function setProdID(id){
@@ -36,16 +39,15 @@ function showProducts(array, categoryName){
                             </div>
                             <small class="text-muted">` + product.soldCount + ` ventas</small> 
                         </div>
-
                     </div>
                 </div>
             </div>
             `
     }
-    console.log(htmlContentToAppend)
-    document.getElementById("products-list-container").innerHTML = htmlContentToAppend;
+    
 
 }
+document.getElementById("products-list-container").innerHTML = htmlContentToAppend;
 document.getElementById("cualCat").innerHTML += `${categoryName}`
 
 }
@@ -84,12 +86,22 @@ function sortAndShowProducts(criterio, array){
 }
 
 
-//variable donde quedara almacenado el arreglo de productos "traído" desde la URL
-let products = [];
+function buscador(listaproducts){
+    let textoEscrito = document.getElementById("busca").value;
+
+    let listaFiltrada = listaproducts.filter(producto => {
+        return producto.name.toLowerCase().indexOf(textoEscrito.toLowerCase()) > -1;
+    })
+    
+    showProducts(listaFiltrada, "");
+}
+
+
+
 let category_name = "";
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    getJSONData(URL).then(function(resultObj){
+    getJSONData(PRODSURL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
             category_name = resultObj.data.catName
@@ -167,6 +179,11 @@ document.addEventListener("DOMContentLoaded", ()=>{
         document.getElementById('iniciarCerrar').innerHTML = '<a class="nav-link" href="login.html">Log In</a>';
 
     })
+
+    document.getElementById('busca').addEventListener('keyup',()=>{
+     
+        buscador(products);
+    });
 
 
     

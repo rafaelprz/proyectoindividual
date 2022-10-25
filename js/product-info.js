@@ -148,4 +148,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     });
 
+    document.getElementById("AgregarAlCarro").addEventListener("click", function(){
+        agregarAlCarrito();
+    });
+
 })

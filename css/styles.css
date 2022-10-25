@@ -272,3 +272,25 @@ a.custom-card:hover {
   margin-bottom: 15px;
 }
 
+#buscador{
+  float: left;
+  width: 25%;
+  ;
+}
+
+table, th, td {
+  border:1px solid black;
+}
+
+.cart{
+  width: 100%;
+}
+
+.green {
+  background-color: rgb(82, 148, 82);
+}
+
+#comprar{
+  width: 200px;
+  margin-left: 85%;
+}

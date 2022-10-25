@@ -39,8 +39,47 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <br>
+      <div class="text-center p-4">
+        <h2>Mi carrito</h2>
+        <h4 id="cualCat">Veras aqui todos los articulos en tu carrito de compras</h4><br>
+      </div>
+      <br>
+      
+      <div class="list-group" id="products-list-container">
+        <table id="tablaCarrito">
+          <tr>
+            <th></th>
+            <th>Producto</th>
+            <th>Costo</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+          </tr>
+        </table>
+        <br><br><br>
+
+
+        <div class="row">
+          <div class="col-3">
+            <h4>Tipo de envio</h4>
+            <input type="radio" id="html" name="fav_language" value="premium">
+            <label for="html">PREMIUM (llega en el dia)</label><br>
+            <input type="radio" id="css" name="fav_language" value="express">
+            <label for="css">EXPRESS (2 a 4 dias habiles)</label><br>
+            <input type="radio" id="javascript" name="fav_language" value="standard">
+            <label for="javascript">STANDARD (1 a 2 semanas)</label> 
+          </div>
+          <div class="col-3">
+            <h4>Direccion de entrega</h4>
+            <label>Calle:</label> <input type="text"><br>
+            <label>Numero:</label> <input type="text"><br>
+            <label>Esquina:</label> <input type="text">
+          </div>
+          <div class="col-1">
+            <button type="button" id="comprar" class="btn btn-light btn-block green">COMPRAR</button>
+          </div>
+          <div class="col"></div>
+        </div>
       </div>
     </div>
   </main>
@@ -49,8 +88,7 @@
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
-      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> -
-        2022</p>
+      <p>Este sitio forma parte de <a href="https://jovenesaprogramar.edu.uy/" target="_blank">Jovenes a Programar</a> - 2022</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
@@ -69,3 +107,4 @@
 </body>
 
 </html>
+      
